@@ -103,12 +103,7 @@ public class Sensores {
     public Date GetFecha(){
         return Fecha;
     }
-    public void Registro() throws ParseException{
-        Date a = new Date(); 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-        setFecha(a);
-        
-    }
+    
     
     
 }
