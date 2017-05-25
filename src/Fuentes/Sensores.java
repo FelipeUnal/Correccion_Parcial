@@ -5,9 +5,6 @@
  */
 package Fuentes;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -17,7 +14,6 @@ public class Sensores {
     private String Marca;
     private String FechaIsnt;
     private String Refer;
-    private Date Fecha;
     private int NivelElec;
     private double Agua;
     private double Temper;
@@ -78,7 +74,7 @@ public class Sensores {
     }
 
     public void setAgua(double Agua) {
-        this.Agua = Agua;
+        this.Agua =  Agua;
     }
 
     public void setTemper(double Temper) {
@@ -94,16 +90,7 @@ public class Sensores {
         return this.Temper;
     }
     
-    public int NvlCargaElectrica(){
+    public double NvlCargaElectrica(){
         return this.NivelElec;
     }
-    public void setFecha(Date f){
-        this.Fecha = f;
-    }
-    public Date GetFecha(){
-        return Fecha;
-    }
-    
-    
-    
 }

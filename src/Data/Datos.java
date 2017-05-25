@@ -6,9 +6,9 @@
 package Data;
 import Fuentes.*;
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 /**
@@ -35,15 +35,31 @@ public class Datos {
             for(int i = 0; i<b.getEstaciones().length; i++){
                 Date a = new Date(); 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-                c.println(b.NombredeEstacion(i));
-                c.println(b.NumerosdeSensores(i));
-                c.print(a);
-                c.print(" "+b.getPromedioTemper());
-                c.print(" "+b.getPromedioAgua());
-                c.println(" "+b.getPromedioElectrico());
-                c.println();
+                c.println(b.DatosdeEstacion(i).getNombre());
+                c.println(b.DatosdeEstacion(i).NumerodeSensores());
+                c.print(new SimpleDateFormat("dd/mm/yyyy").format(a));
+                c.print(" "+b.DatosdeEstacion(i).getPromedioTemper());
+                c.print(" "+b.DatosdeEstacion(i).getPromedioElectrico());
+                c.println(" "+b.DatosdeEstacion(i).getPromedioAgua());
             }
         }
+    }
+    
+    public void Actualizacion() throws IOException{
+        File A = new File("Registro.txt");
+        FileReader Reader = new FileReader(A);
+        BufferedReader reader2 = new BufferedReader(Reader);
+        String Datos;
+        while((Datos=reader2.readLine())!=null){
+            StringTokenizer Token = new StringTokenizer(Datos,",");
+            String[] Tokens = new String[Token.countTokens()];
+            for(int i = 0; i<Tokens.length; i++){
+                Tokens[i]=Token.nextToken();
+            }
+            
+        }
+        
+        
     }
     
     

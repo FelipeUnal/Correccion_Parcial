@@ -1,46 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fuentes;
 
-/**
- *
- * @author Estudiante
- */
 public class Estacion {
     private String Ubicacion;
     private String Nombre;
     private String FechaInst;
-    private Sensores[] Sensores;
-    private final int[] Promedio;
+    private final Sensores[] Sensores;
+    private final double[] Promedio;
 
     public Estacion(String Ubicacion, String Nombre, String FechaInst, Sensores[] Sensores) {
         this.Ubicacion = Ubicacion;
         this.Nombre = Nombre;
         this.FechaInst = FechaInst;
-        this.Sensores = Sensores;
-        this.Promedio = new int[3];
-    }
-    
-    public int getPromedioAgua(){
-        Promedio[0] = (int) ((Sensores[0].CantidadAgua()+Sensores[1].CantidadAgua()+Sensores[2].CantidadAgua())/3);
-        return Promedio[1];
-    }
-    
-    public int getPromedioTemper(){
-        Promedio[1] = (int) ((Sensores[0].TemperaturaActual()+Sensores[1].TemperaturaActual()+Sensores[2].TemperaturaActual())/3);
-        return Promedio[2];
-    }
-    
-    public int getPromedioElectrico(){
-        Promedio[3] = (int) ((Sensores[0].NvlCargaElectrica()+Sensores[1].NvlCargaElectrica()+Sensores[2].NvlCargaElectrica())/3);
-        return Promedio[3];
-    }
-        
-        
-    public void setSensores(Sensores[] Sensores) {
         if(Sensores.length>3){
             Sensores[] a = new Sensores[3];
             for(int i = 0; i<3; i++){
@@ -53,13 +23,27 @@ public class Estacion {
             this.Sensores = Sensores;
         }else
         this.Sensores = Sensores;
+        this.Promedio = new double[3];
+    }
+    
+    public double getPromedioAgua(){
+        Promedio[0] = ((Sensores[0].CantidadAgua()+Sensores[1].CantidadAgua()+Sensores[2].CantidadAgua())/this.Sensores.length);
+        return Math.floor(Promedio[0]);
+    }
+    
+    public double getPromedioTemper(){
+        Promedio[1] = ((Sensores[0].TemperaturaActual()+Sensores[1].TemperaturaActual()+Sensores[2].TemperaturaActual())/this.Sensores.length);
+        return Math.floor(Promedio[1]);
+    }
+    
+    public double getPromedioElectrico(){
+        Promedio[2] = ((Sensores[0].NvlCargaElectrica()+Sensores[1].NvlCargaElectrica()+Sensores[2].NvlCargaElectrica())/this.Sensores.length);
+        return  Math.floor(Promedio[2]);
     }
     
     public int NumerodeSensores(){
         return Sensores.length;
     }
-    
-    
     
     public String getUbicacion() {
         return Ubicacion;
@@ -84,8 +68,6 @@ public class Estacion {
     public void setFechaInst(String FechaInst) {
         this.FechaInst = FechaInst;
     }
-    
-    
     
     
 }

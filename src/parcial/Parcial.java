@@ -8,6 +8,7 @@ package parcial;
 import Data.*;
 import Fuentes.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -19,28 +20,27 @@ public class Parcial {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         Scanner A = new Scanner(System.in);
-        double z1 = A.nextDouble();
-        String z2 = A.nextLine();
-        double z3 = A.nextDouble();
+        
+        //Aqui se pondran los datos de los sensores, los sensores se cuentan por torres por los que los guarde en un arreglo de Sensores
         Sensores[] a = new Sensores[4];
         a[0] = new Sensores("Toshiba","06/06/2014","R404");
-        a[0].setAgua(z1);
-        a[0].setNivelElec(z2);
-        a[0].setTemper(z3);
+        a[0].setAgua(21);
+        a[0].setNivelElec("Truenos");
+        a[0].setTemper(10);
         a[1] = new Sensores("HP","06/06/2014","R465");
-        a[0].setAgua(z4);
-        a[0].setNivelElec(z5);
-        a[0].setTemper(z6);
+        a[1].setAgua(22);
+        a[1].setNivelElec("Tormenta");
+        a[1].setTemper(8);
         a[2] = new Sensores("PHPO","06/06/2014","AA234");
-        a[0].setAgua(z7);
-        a[0].setNivelElec(z8);
-        a[0].setTemper(z9);
+        a[2].setAgua(15);
+        a[2].setNivelElec("Normal");
+        a[2].setTemper(20);
         a[3] = new Sensores("Intel","06/06/2014","AA354");
-        a[0].setAgua(z10);
-        a[0].setNivelElec(z11);
-        a[0].setTemper(z12);
+        a[3].setAgua(13);
+        a[3].setNivelElec("Normal");
+        a[3].setTemper(22);
         
        
         
@@ -55,15 +55,18 @@ public class Parcial {
         a2[2] = new Sensores("PHPO","06/06/2014","AA276");
         
         Estacion[] b = new Estacion[3];
-        b[0] = new Estacion("Kra14A#30-40s","Sur","06/06/2014");
-        b[1] = new Estacion("Kra10#120-40","NorOeste","07/07/2015");
-        b[2] = new Estacion("Calle100#50-45","NorOriente","06/06/2014");  
+        b[0] = new Estacion("Kra14A#30-40s","Sur","06/06/2014",a);
+        b[1] = new Estacion("Kra10#120-40","NorOeste","07/07/2015",a1);
+        b[2] = new Estacion("Calle100#50-45","NorOriente","06/06/2014",a2);  
         
+        //Hubira podido hacer una coleccion de estaciones por cada ciudad, pero los ciudades tambien tienen un numero limitado de estaciones realmente,
+        //Se cuentan y son limitados 
         Ciudad Bogota = new Ciudad("Bogota",b);
         
         Datos F = new Datos();
         F.AddCiudad(Bogota);
-        F.PrimerosDatos();
+        //F.PrimerosDatos();//Cuando ya tenemos nuestro archivo que guarda nuestros datos, recurrimos a otra funcion lamada actualizacion
+        F.Actualizacion();
     }
     
 }
